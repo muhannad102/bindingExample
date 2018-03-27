@@ -1,5 +1,5 @@
 using GalaSoft.MvvmLight;
-
+// This is auto generated class with MvvmLight . I think we need it.
 namespace bindingExample.ViewModel
 {
     /// <summary>

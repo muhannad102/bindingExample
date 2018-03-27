@@ -12,6 +12,8 @@
   See http://www.galasoft.ch/mvvm
 */
 
+
+// This is auto generated class with MvvmLight . I think we need it.
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
 
@@ -28,6 +30,8 @@ namespace bindingExample.ViewModel
         /// </summary>
         public ViewModelLocator()
         {
+          
+
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             ////if (ViewModelBase.IsInDesignModeStatic)
@@ -42,6 +46,7 @@ namespace bindingExample.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+
         }
 
         public MainViewModel Main

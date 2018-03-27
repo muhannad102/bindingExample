@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:bindingExample.View"
+        xmlns:local="clr-namespace:bindingExample"
+        xmlns:View="clr-namespace:bindingExample.View"
         mc:Ignorable="d"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         Title="MainWindow" Height="Auto" Width="Auto"
@@ -11,7 +12,8 @@
    
     <Grid>
 
-        <local:DepartmentsView x:Name="mainUserControl"></local:DepartmentsView>
+        <View:DepartmentsView x:Name="mainUserControl"></View:DepartmentsView>
+        <local:loading></local:loading>
         
     </Grid>
 </Window>

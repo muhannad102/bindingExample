@@ -1,8 +1,7 @@
 ﻿using bindingExample.Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -34,7 +33,7 @@ namespace bindingExample.ViewModel
 
         public void createDepartments()
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
 
                 Department department = new Department();
@@ -55,8 +54,18 @@ namespace bindingExample.ViewModel
         public ICommand OpenDepartmentWithNumbers
         {
 
-            get { return openDepartmentWithNumbers ?? new RelayCommand(viewDepartmentUsingId); }
+            get {
+
+                return openDepartmentWithNumbers ?? new RelayCommand(viewDepartmentUsingId, canExecute => App.UIM.applicationStatus()); }
             set => openDepartmentWithNumbers = value;
+
+        }
+
+        private ICommand makeBusy;
+        public ICommand MakeBusy {
+
+            get { return makeBusy ?? new RelayCommand(makeBusyAsync); }
+            set => makeBusy = value;
 
         }
 
@@ -67,8 +76,8 @@ namespace bindingExample.ViewModel
 
         private void viewDepartmentUsingId(object obj)
         {
-            var e = (KeyEventArgs)obj;
-            if (keyIntMapping.ContainsKey(e.Key))
+            KeyEventArgs e = (KeyEventArgs)obj;
+            if (keyIntMapping.ContainsKey(e.Key) && keyIntMapping[e.Key] <= D.Count())
             {
                 App.UIM.showMessage(D.FirstOrDefault(d => d.Id == keyIntMapping[e.Key]));
 
@@ -77,7 +86,16 @@ namespace bindingExample.ViewModel
            
         }
 
-   
+     private async void makeBusyAsync(object obj) {
+
+            App.UIM.makeBusy(true);
+
+             await Task.Run(()=> { Thread.Sleep(5000); });
+
+            App.UIM.makeBusy(false);
+
+
+        }
 
     }
 }
